@@ -3,10 +3,218 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🌸 Поллианна</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="styles.css" />
-  <meta name="theme-color" content="#6A8F6B" />
+  <title>Поллианна</title>
+  <meta name="theme-color" content="#8FBFC3" />
+
+  <style>
+    :root {
+      --bg: #EEF4F5;
+      --card: #FFFFFF;
+      --card-soft: #F8FBFB;
+      --line: #E3EAEB;
+      --text: #2F3A3D;
+      --muted: #7B8A8F;
+      --primary: #8FBFC3;
+      --green-soft: #DCEFE2;
+      --green-text: #4A7B61;
+      --yellow-soft: #FFF0CF;
+      --yellow-text: #B8841E;
+      --shadow: 0 8px 24px rgba(44, 62, 80, 0.06);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .app-shell {
+      max-width: 920px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding-bottom: 92px;
+    }
+
+    .topbar {
+      padding: 22px 18px 10px;
+    }
+
+    .back-link {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .topbar p {
+      margin: 6px 0 0;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .content {
+      padding: 0 16px 20px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .metric-card,
+    .panel,
+    .task-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .metric-card {
+      padding: 16px 12px;
+      text-align: center;
+    }
+
+    .metric-number {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .section {
+      margin-bottom: 16px;
+    }
+
+    .panel {
+      padding: 16px;
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      color: var(--text);
+    }
+
+    .time-row {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .time-row:last-child {
+      border-bottom: none;
+    }
+
+    .time {
+      min-width: 72px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .task-card {
+      padding: 14px;
+      margin-bottom: 10px;
+      background: var(--card-soft);
+    }
+
+    .task-card h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .task-meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .fake-box,
+    .fake-select {
+      width: 100%;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--card-soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-width: 920px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .bottom-nav a {
+      text-decoration: none;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 6px 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .bottom-nav a.active {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    @media (min-width: 740px) {
+      .metrics {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="app-shell">
@@ -18,69 +226,96 @@
 
     <main class="content">
       <section class="metrics">
-        <div class="metric-card"><div class="metric-number">3</div><div class="metric-label">Уроков сегодня</div></div>
-        <div class="metric-card"><div class="metric-number">1</div><div class="metric-label">Музыка сегодня</div></div>
-        <div class="metric-card"><div class="metric-number">5</div><div class="metric-label">Дом</div></div>
-        <div class="metric-card"><div class="metric-number">0</div><div class="metric-label">Внеплановые</div></div>
-      </section>
-
-      <section class="section">
-        <h2>🕒 Сегодня по времени</h2>
-        <div class="schedule-row"><div class="schedule-time">10:00</div><div>Обучение грамоте</div></div>
-<div class="schedule-row"><div class="schedule-time">12:00</div><div>Окружающий мир</div></div>
-      </section>
-
-      <section class="section">
-        <h2>📚 Учёба сегодня</h2>
-        <div class="task-card">
-              <h3>Обучение грамоте</h3>
-              <div class="task-meta">10:00</div>
-              <div class="fake-select">Статус: не начато / в процессе / выполнено / нужна помощь</div>
-              <div class="fake-upload">Прикрепить скрин</div>
-            </div>
-<div class="task-card">
-              <h3>Окружающий мир</h3>
-              <div class="task-meta">12:00</div>
-              <div class="fake-select">Статус: не начато / в процессе / выполнено / нужна помощь</div>
-              <div class="fake-upload">Прикрепить скрин</div>
-            </div>
-      </section>
-
-      <section class="section">
-        <h2>🎵 Музыка</h2>
-        <p class="note">Сегодня музыкальных занятий нет.</p>
-      </section>
-
-      <section class="section">
-        <h2>🏡 Дом</h2>
-        <div class="checklist">
-          <div class="check-item">☐ Утренняя гигиена</div>
-<div class="check-item">☐ Своя комната</div>
-<div class="check-item">☐ Посудомойка — утро</div>
-<div class="check-item">☐ Пол кухни и зала</div>
-<div class="check-item">☐ Уроки — интерактив, распечатки</div>
-<div class="check-item">☐ Дополнительные баллы</div>
+        <div class="metric-card">
+          <div class="metric-number">3</div>
+          <div class="metric-label">Уроков сегодня</div>
         </div>
-        <div class="fake-select">Поведение</div>
+        <div class="metric-card">
+          <div class="metric-number">1</div>
+          <div class="metric-label">Музыка сегодня</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">5</div>
+          <div class="metric-label">Дом</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-number">0</div>
+          <div class="metric-label">Внеплановые</div>
+        </div>
       </section>
 
-      
+      <section class="section">
+        <div class="panel">
+          <h2>🕒 Сегодня по времени</h2>
+          <div class="time-row">
+            <div class="time">10:00</div>
+            <div>Обучение грамоте</div>
+          </div>
+          <div class="time-row">
+            <div class="time">12:00</div>
+            <div>Окружающий мир</div>
+          </div>
+        </div>
+      </section>
 
       <section class="section">
-        <h2>📌 Осталось доделать</h2>
-        <div class="fake-input">Предмет</div>
-        <div class="fake-input">Что сделать</div>
-        <div class="fake-select">Статус</div>
+        <div class="panel">
+          <h2>📚 Учёба сегодня</h2>
+
+          <div class="task-card">
+            <h3>Обучение грамоте</h3>
+            <div class="task-meta">10:00</div>
+            <div class="fake-select">Статус: не начато / в процессе / выполнено / нужна помощь</div>
+            <div class="fake-box">Прикрепить скрин</div>
+          </div>
+
+          <div class="task-card">
+            <h3>Окружающий мир</h3>
+            <div class="task-meta">12:00</div>
+            <div class="fake-select">Статус: не начато / в процессе / выполнено / нужна помощь</div>
+            <div class="fake-box">Прикрепить скрин</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="panel">
+          <h2>🎵 Музыка</h2>
+          <div class="fake-box">Сегодня музыкальных занятий нет.</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="panel">
+          <h2>🏡 Дом</h2>
+          <div class="check-list">
+            <label class="check-item"><input type="checkbox"> Утренняя гигиена</label>
+            <label class="check-item"><input type="checkbox"> Своя комната</label>
+            <label class="check-item"><input type="checkbox"> Посудомойка — утро</label>
+            <label class="check-item"><input type="checkbox"> Пол кухни и зала</label>
+            <label class="check-item"><input type="checkbox"> Уроки — интерактив, распечатки</label>
+            <label class="check-item"><input type="checkbox"> Дополнительные баллы</label>
+          </div>
+          <div class="fake-select">Поведение</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="panel">
+          <h2>📌 Осталось доделать</h2>
+          <div class="fake-box">Предмет</div>
+          <div class="fake-box">Что сделать</div>
+          <div class="fake-select">Статус</div>
+        </div>
       </section>
     </main>
 
     <nav class="bottom-nav">
       <a href="index.html">🏠<span>Дом</span></a>
-      <a class="active" href="#">👧<span>Дети</span></a>
+      <a class="active" href="pollyanna.html">👧<span>Дети</span></a>
       <a href="mama.html">✅<span>Задачи</span></a>
       <a href="mama.html">👩<span>Мама</span></a>
     </nav>
   </div>
-  <script src="app.js"></script>
 </body>
 </html>
